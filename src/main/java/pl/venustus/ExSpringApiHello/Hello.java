@@ -8,7 +8,6 @@ public class Hello {
 
     @GetMapping("/dw")
     public void sendDataTo() {
-
     }
 
 
