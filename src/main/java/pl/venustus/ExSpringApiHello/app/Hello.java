@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Hello {
 
-    @GetMapping("/dt")
+    @GetMapping("/do")
     public void sendDataTo() {
 
     }
@@ -15,10 +15,5 @@ public class Hello {
     public String hello() {
         return "Hello.";
     }
-
-    public void test() {
-
-    }
-
 
 }
