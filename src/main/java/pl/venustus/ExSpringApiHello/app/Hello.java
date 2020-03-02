@@ -2,7 +2,6 @@ package pl.venustus.ExSpringApiHello.app;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,19 +24,16 @@ public class Hello {
 
     }
 
-    @DeleteMapping("/deleteElectronicData")
-    public void deleteElectronicData(@RequestParam long removeId) {
+    @GetMapping("/deleteElectronicData")
+    public void deleteElectronicData(@RequestParam int id) {
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "http://localhost:8080/api/computers/delete?id=" + removeId;
-
-        System.out.println(url);
+        String url = "http://localhost:8080/api/computers/delete?id=" + id;
 
         ResponseEntity<Boolean> responseEntity = restTemplate.exchange(url,
                 HttpMethod.DELETE,
                 null,
                 Boolean.class);
-
         System.out.println(responseEntity.getBody());
     }
 
