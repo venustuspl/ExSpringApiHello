@@ -1,5 +1,7 @@
 package pl.venustus.ExSpringApiHello.app;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +37,28 @@ public class Hello {
                 null,
                 Boolean.class);
         System.out.println(responseEntity.getBody());
+    }
+
+    @GetMapping("/addElectronicData")
+    public void addElectronicData() {
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
+        String url = "http://localhost:8080/api/computers/add";
+        String objToSent = " {\n" +
+                "        \"id\": 4,\n" +
+                "        \"ddrType\": \"dd4\",\n" +
+                "        \"mhz\": 400,\n" +
+                "        \"memorySize\": 40\n" +
+                "    }";
+
+        HttpEntity httpEntity = new HttpEntity(objToSent, httpHeaders);
+
+        restTemplate.exchange(url,
+                HttpMethod.POST,
+                httpEntity,
+                void.class);
     }
 
     @GetMapping("/")
